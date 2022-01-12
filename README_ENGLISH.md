@@ -1,8 +1,8 @@
 # LevaEu - Backend
 
-## Sobre
-### Nós somos um grupo de estudantes da [Universidade Federal do Ceará](https://www.ufc.br/)
-### Conheça os membros do nosso time:
+## About
+### We're a group of students from the [Universidade Federal do Ceará](https://www.ufc.br/)
+### Meet our team members:
 <table>
   <tr>
     <td align="center">
@@ -40,11 +40,11 @@
 </table>
 
 ## Links
-[Postman - API](https://www.postman.com/winter-resonance-1974/workspace/levaeu/request/6751126-d541ad76-5f19-4d4d-bfab-83355e33795d)<br>
+[Postman - API routes](https://www.postman.com/winter-resonance-1974/workspace/levaeu/request/6751126-d541ad76-5f19-4d4d-bfab-83355e33795d)<br>
 [Trello](https://trello.com/b/RcivNDqd/levaeu)<br>
-[API url base](https://s7mjf3rnvf.execute-api.us-east-1.amazonaws.com/dev)
+[API base url](https://s7mjf3rnvf.execute-api.us-east-1.amazonaws.com/dev)
 
-## Mapa de funcionalidades
+## Features map
 <!-- <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
@@ -149,41 +149,31 @@
       <td class="tg-0lax" style="text-align: center;">O usuário pode buscar caronas com filtros, como bairro, pontos de encontro, horário</td>
       <td class="tg-0lax" style="text-align: center;">-</td>
     </tr>
-    <tr>
-      <td class="tg-0lax"><span style="font-weight:bold">RF00017 -</span> Bairros</td>
-      <td class="tg-0lax" style="text-align: center;">A administração pode cadastrar os bairros da cidade, para que os usuários usem nas caronas e rotinas</td>
-      <td class="tg-0lax" style="text-align: center;"><a target="_blank" href="https://github.com/RabbitUFC/leva-eu-backend/blob/develop/src/controllers/districts.js" target="_blank" rel="noopener noreferrer">código</a></td>
-    </tr>
-    <tr>
-      <td class="tg-0lax"><span style="font-weight:bold">RF00017 -</span> Pontos de encontro</td>
-      <td class="tg-0lax" style="text-align: center;">A administração pode cadastrar os principais pontos de encontro da cidade, para que os usuários usem nas caronas e rotinas</td>
-      <td class="tg-0lax" style="text-align: center;"><a target="_blank" href="https://github.com/RabbitUFC/leva-eu-backend/blob/develop/src/controllers/pickup-points.js" target="_blank" rel="noopener noreferrer">código</a></td>
-    </tr>
   </tbody>
 </table>
 
-## Documentação
-### Testar a API
-1. Abra o link do Postman;
-2. Crie uma conta ou logue;
-3. Selecione `cloud env` em `Enviroments`. Você pode encontrar essa opção no lado esquerdo da tela ou no canto superior direito;
-4. Teste as rotas :)
+## Documentation
+### Test the API
+1. Open the Postman link;
+2. Create a account or sign in;
+3. Select the `cloud env` in `Enviroments`. You can find this option in the left side of the page or in the top-right corner;
+4. Test the endpoints :)
 
-### Rodar o projeto localmente
-1. Baixe esse repositório;
-2. Entre na pasta do projeto;
-3. Rode o comando `yarn` para instalar as depedências;
-4. Rode o comando `yarn dev`;
-5. O projeto vai estar disponível na url: `http://localhost:3000/dev`
+### Run this project in your local enviroment
+1. Download this repository;
+2. Enter the project folder;
+3. Run the command `yarn` to install the depedencies;
+4. Run the command `yarn dev`;
+5. The project should be running in this base url: `localhost:3000/dev`
 
-### Deploy o projeto para a AWS 
-1. Você deve ter o aws CLI instalado globalmente em sua máquina e pelo menos um perfil. Vamos chamá-lo de perfil aws por `minha-conta`;
-2. Abra o `package.json` e encontre a seção de scripts;
-3. Encontre a opção `--aws-profile` no script de implantação;
-4. Altere `rabbit` para `minha-conta`;
-5. No terminal, execute `yarn deploy`
+### Deploy the project to AWS
+1. You must have the aws CLI installed globally in your machine and at least one profile. Let's call you aws profile by `my-account`;
+2. Open the package.json and find the scripts section;
+3. Find the `--aws-profile` option in the deploy script;
+4. Change `rabbit` to `my-account`;
+5. In the terminal, run `yarn deploy`
 
-## Linguagens e Ferramentas
+## Languages and Tools
 <p align="left">
   <a href="https://nodejs.org" target="_blank" rel="noreferrer" style="margin-right: 15px;">
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40" />
