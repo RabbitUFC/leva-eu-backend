@@ -155,7 +155,7 @@
       <td class="tg-0lax" style="text-align: center;"><a target="_blank" href="https://github.com/RabbitUFC/leva-eu-backend/blob/develop/src/controllers/districts.js" target="_blank" rel="noopener noreferrer">código</a></td>
     </tr>
     <tr>
-      <td class="tg-0lax"><span style="font-weight:bold">RF00017 -</span> Pontos de encontro</td>
+      <td class="tg-0lax"><span style="font-weight:bold">RF00018 -</span> Pontos de encontro</td>
       <td class="tg-0lax" style="text-align: center;">A administração pode cadastrar os principais pontos de encontro da cidade, para que os usuários usem nas caronas e rotinas</td>
       <td class="tg-0lax" style="text-align: center;"><a target="_blank" href="https://github.com/RabbitUFC/leva-eu-backend/blob/develop/src/controllers/pickup-points.js" target="_blank" rel="noopener noreferrer">código</a></td>
     </tr>
