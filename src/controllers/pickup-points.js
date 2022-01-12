@@ -1,43 +1,32 @@
 const {StatusCodes} = require('http-status-codes');
 
 const {uploadImage} = require('../common/s3');
-const Users = require('../models/users');
-const authUtils = require('../utils/auth');
+const PickupPoints = require('../models/pickup-points');
 const {responseMessages} = require('../utils/response-messages');
 const {S3_FOLDERS} = require('../utils/s3-folders');
 
-// @ToDo - send confirmation email. set confirmedAccount to true.
 exports.create = async (req, res) => {
   try {
-    const {imageType, password} = req.body;
-    var photo, putURL;
+    const {imageType} = req.body;
+    var image, putURL;
 
     if (imageType) {
-      const {getUrl, putUrl} = uploadImage(S3_FOLDERS.users, imageType);
-      photo = getUrl;
+      const {getUrl, putUrl} = uploadImage(S3_FOLDERS.pickupPoints, imageType);
+      image = getUrl;
       putURL = putUrl;
     }
 
-    const hashedPassword = authUtils.hashPassword(password);
-
-    const user = await Users.create({
+    await PickupPoints.create({
       ...req.body,
-      ...(photo && {photo}),
-      password: hashedPassword,
+      ...(image && {image}),
       imageType: undefined,
     });
-
-    const token = authUtils.generateToken(user._id);
-    user.token = token;
-
-    await user.save();
 
     return res
       .status(StatusCodes.OK)
       .json({
         success: true,
         putUrl: putURL,
-        token,
       });
   } catch (error) {
     return res
@@ -52,7 +41,7 @@ exports.create = async (req, res) => {
 
 exports.list = async (req, res) => {
   try {
-    const data = await Users
+    const data = await PickupPoints
       .find({}, '-__v -createdAt -updatedAt -deleted')
       .lean();
 
@@ -77,7 +66,7 @@ exports.retrieve = async (req, res) => {
   try {
     const {id} = req.params;
 
-    const data = await Users
+    const data = await PickupPoints
       .findById(id)
       .lean();
 
@@ -108,18 +97,18 @@ exports.update = async (req, res) => {
   try {
     const {id} = req.params;
     const {imageType} = req.body;
-    var photo, response;
+    var image, response;
 
     if (imageType) {
-      const {getUrl, putUrl} = uploadImage(S3_FOLDERS.users, imageType);
-      photo = getUrl;
+      const {getUrl, putUrl} = uploadImage(S3_FOLDERS.pickupPoints, imageType);
+      image = getUrl;
       response = putUrl;
     }
 
-    await Users
+    await PickupPoints
       .findByIdAndUpdate(id, {
         ...req.body,
-        ...(photo && {photo}),
+        ...(image && {image}),
         imageType: undefined,
       })
       .lean();
@@ -144,7 +133,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     const {id: _id} = req.params;
-    await Users.delete({_id});
+    await PickupPoints.delete({_id});
 
     return res
       .status(StatusCodes.OK)
