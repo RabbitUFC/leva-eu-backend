@@ -1,0 +1,41 @@
+const bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
+const mongooseDelete = require('mongoose-delete');
+var uniqueValidator = require('mongoose-unique-validator');
+
+const UsersSchema = new mongoose.Schema({
+  name: String,
+  photo: String,
+  collegeEnrollment: String,
+  email: {
+    type: String,
+    unique: true,
+  },
+  password: String,
+  token: String,
+  userTypePreference: {
+    type: String,
+    enum: ['driver', 'passanger'],
+    default: 'passanger',
+  },
+  gender: {
+    type: String,
+    enum: ['male', 'female', 'other'],
+    default: 'other',
+  },
+}, {timestamps: true});
+
+UsersSchema.methods.validatePassword = async function validatePassword(data) {
+  return bcrypt.compareSync(data, this.password);
+};
+
+UsersSchema.plugin(mongooseDelete, {
+  deletedAt: true,
+  overrideMethods: true,
+});
+
+UsersSchema.plugin(uniqueValidator, {
+  message: 'Já existe um usuário cadastrado com esse email.',
+});
+
+module.exports = mongoose.model('Users', UsersSchema);
