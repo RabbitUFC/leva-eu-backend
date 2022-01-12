@@ -7,7 +7,8 @@
     "node": "14.*"
   },
   "scripts": {
-    "dev": "sls offline"
+    "dev": "sls offline",
+    "deploy": "yarn serverless deploy -v --aws-profile rabbit --config ./serverless.yml"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
