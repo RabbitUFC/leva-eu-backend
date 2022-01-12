@@ -45,7 +45,7 @@
 [API base url](https://s7mjf3rnvf.execute-api.us-east-1.amazonaws.com/dev)
 
 ## Features map
-<style type="text/css">
+<!-- <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
   overflow:hidden;padding:10px 5px;word-break:normal;}
@@ -54,8 +54,8 @@
 .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
 .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
 .tg .tg-0lax{text-align:left;vertical-align:top}
-</style>
-<table class="tg" style="undefined;table-layout: fixed; width: 1009px">
+</style> -->
+<table class="tg" style="table-layout: fixed; width: 1009px">
   <colgroup>
   <col style="width: 325px">
   <col style="width: 454px">
@@ -63,16 +63,16 @@
   </colgroup>
   <thead>
     <tr>
-      <th class="tg-c3ow"><span style="font-weight:bold">Requisitos Funcionais Fundamentais</span></th>
-      <th class="tg-c3ow"><span style="font-weight:bold">Descrição</span></th>
-      <th class="tg-c3ow"><span style="font-weight:bold">Codificação</span></th>
+      <th class="tg-c3ow"><span style="text-align: center; font-weight:bold">Requisitos Funcionais Fundamentais</span></th>
+      <th class="tg-c3ow"><span style="text-align: center; font-weight:bold">Descrição</span></th>
+      <th class="tg-c3ow"><span style="text-align: center; font-weight:bold">Codificação</span></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td class="tg-0pky"><span style="font-weight:bold">RF0001 -</span> Cadastrar conta</td>
       <td class="tg-c3ow" style="text-align: center;">O usuário pode se cadastrar fornecendo algumas informações básicas</td>
-      <td class="tg-c3ow"><a href="https://github.com/RabbitUFC/leva-eu-backend/blob/develop/src/controllers/users.js#L10" target="_blank" rel="noopener noreferrer">código</a></td>
+      <td class="tg-c3ow" style="text-align: center;"><a href="https://github.com/RabbitUFC/leva-eu-backend/blob/develop/src/controllers/users.js#L10" target="_blank" rel="noopener noreferrer">código</a></td>
     </tr>
     <tr>
       <td class="tg-0pky"><span style="font-weight:bold">RF0002 - </span>Autenticar conta</td>
@@ -107,7 +107,7 @@
     <tr>
       <td class="tg-0lax"><span style="font-weight:bold">RF0008 -</span> Criar rotina de caronas</td>
       <td class="tg-0lax" style="text-align: center;">O usuário pode criar rotinas de caronas que criam as caronas automaticamente todos os dias</td>
-      <td class="tg-c3ow"><a href="https://github.com/RabbitUFC/leva-eu-backend/blob/develop/src/controllers/routines.js" target="_blank" rel="noopener noreferrer">código</a></td>
+      <td class="tg-c3ow" style="text-align: center;"><a href="https://github.com/RabbitUFC/leva-eu-backend/blob/develop/src/controllers/routines.js" target="_blank" rel="noopener noreferrer">código</a></td>
     </tr>
     <tr>
       <td class="tg-0lax"><span style="font-weight:bold">RF0009 -</span> Solicitar vaga em carona</td>
@@ -142,7 +142,7 @@
     <tr>
       <td class="tg-0lax"><span style="font-weight:bold">RF00015 -</span> Editar perfil</td>
       <td class="tg-0lax" style="text-align: center;">O usuário pode editar as informações da sua conta, exceto a matrícula</td>
-      <td class="tg-c3ow"><a href="https://github.com/RabbitUFC/leva-eu-backend/blob/develop/src/controllers/users.js#L107" target="_blank" rel="noopener noreferrer">código</a></td>
+      <td class="tg-c3ow" style="text-align: center;"><a href="https://github.com/RabbitUFC/leva-eu-backend/blob/develop/src/controllers/users.js#L107" target="_blank" rel="noopener noreferrer">código</a></td>
     </tr>
     <tr>
       <td class="tg-0lax"><span style="font-weight:bold">RF00016 -</span> Filtrar caronas</td>
