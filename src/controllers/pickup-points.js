@@ -43,6 +43,11 @@ exports.list = async (req, res) => {
   try {
     const data = await PickupPoints
       .find({}, '-__v -createdAt -updatedAt -deleted')
+      .populate({
+        path: 'district',
+        select: '_id name',
+        options: {withDeleted: true},
+      })
       .lean();
 
     return res
@@ -68,6 +73,11 @@ exports.retrieve = async (req, res) => {
 
     const data = await PickupPoints
       .findById(id)
+      .populate({
+        path: 'district',
+        select: '_id name',
+        options: {withDeleted: true},
+      })
       .lean();
 
     if (!data) {

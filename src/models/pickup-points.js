@@ -3,7 +3,10 @@ const mongooseDelete = require('mongoose-delete');
 
 const PickupPointsSchema = new mongoose.Schema({
   name: String,
-  district: String,
+  district: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'Districts',
+  },
   image: String,
 }, {timestamps: true});
 
