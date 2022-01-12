@@ -1,4 +1,3 @@
-const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const mongooseDelete = require('mongoose-delete');
 var uniqueValidator = require('mongoose-unique-validator');
@@ -24,10 +23,6 @@ const UsersSchema = new mongoose.Schema({
     default: 'other',
   },
 }, {timestamps: true});
-
-UsersSchema.methods.validatePassword = async function validatePassword(data) {
-  return bcrypt.compareSync(data, this.password);
-};
 
 UsersSchema.plugin(mongooseDelete, {
   deletedAt: true,

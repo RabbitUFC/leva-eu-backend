@@ -13,6 +13,10 @@ exports.generateToken = (userID) => {
   return token;
 };
 
+exports.validatePassword = ({savedPassword, informedPassword}) => {
+  return bcrypt.compareSync(informedPassword, savedPassword);
+};
+
 exports.hashPassword = (password) => {
   const hashedPassword = bcrypt.hashSync(password, 10);
 
