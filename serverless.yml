@@ -17,15 +17,6 @@ provider:
   memorySize: 128
   timeout: 30
   versionFunctions: false
-  environment:
-    DEBUG: false
-    DB_URI: mongodb+srv://rabbit:Rabbit2021@rabbit.unen2.mongodb.net/LevaEu
-    AWS_KEY_ID: AKIASC3ODL6LGH4WPWJN
-    AWS_SECRET: 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
-    AWS_REGION_NAME: us-east-1
-    AWS_BUCKET_NAME: leva-eu
-    AWS_CDN_URL: d3ntp10o36xoiu.cloudfront.net
-    JWT_SECRET: SMCg#wP/GCa!;ZFp7Xw&qi_r+)HWM?
 
 functions:
   public:
