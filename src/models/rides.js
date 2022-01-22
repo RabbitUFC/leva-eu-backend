@@ -2,36 +2,26 @@ const mongoose = require('mongoose');
 const mongooseDelete = require('mongoose-delete');
 
 const RidesSchema = new mongoose.Schema({
-  goingData: {
-    district: {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'Districts',
-    },
-    pickupPoints: [{
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'Pickup_Points',
-    }],
-    hour: Date,
-  },
-  returnData: {
-    district: {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'Districts',
-    },
-    pickupPoints: [{
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'Pickup_Points',
-    }],
-    hour: Date,
-  },
-  spots: Number,
-  additionalInformation: String,
-  routine: Boolean,
-  days: [{
+  startLocation: [{
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'Districts',
+  }],
+  endLocation: [{
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'Districts',
+  }],
+  pickupPoints: [{
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'Pickup_Points',
+  }],
+  date: [{
     type: Number,
     enum: [1, 2, 3, 4, 5, 6, 7],
   }],
-  duration: Number,
+  hour: Date,
+  spots: Number,
+  additionalInformation: String,
+  active: Boolean,
 }, {timestamps: true});
 
 RidesSchema.plugin(mongooseDelete, {

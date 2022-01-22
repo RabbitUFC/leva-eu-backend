@@ -25,16 +25,11 @@ exports.create = async (req, res) => {
 
 exports.list = async (req, res) => {
   try {
+    /* const {active} = req.query;
+    Rides.filter({active}); */
+
     const data = await Rides
       .find({}, '-__v -createdAt -updatedAt -deleted')
-      .populate({
-        path: 'goingData returnData',
-        populate: {
-          path: 'district pickupPoints',
-          select: '_id name image',
-          options: {withDeleted: true},
-        },
-      })
       .lean();
 
     return res
@@ -60,14 +55,6 @@ exports.retrieve = async (req, res) => {
 
     const data = await Rides
       .findById(id)
-      .populate({
-        path: 'goingData returnData',
-        populate: {
-          path: 'district pickupPoints',
-          select: '_id name image',
-          options: {withDeleted: true},
-        },
-      })
       .lean();
 
     if (!data) {
