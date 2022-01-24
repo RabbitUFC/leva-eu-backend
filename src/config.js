@@ -13,4 +13,8 @@ module.exports = {
     bucket: process.env.AWS_BUCKET_NAME,
     cdnUrl: process.env.AWS_CDN_URL,
   },
+  email: {
+    user: process.env.EMAIL_USER,
+    password: process.env.EMAIL_PWD,
+  },
 };
