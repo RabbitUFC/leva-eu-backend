@@ -12,6 +12,11 @@ const UsersSchema = new mongoose.Schema({
   },
   password: String,
   token: String,
+  code: String,
+  confirmedAccount: {
+    type: Boolean,
+    default: false,
+  },
   userTypePreference: {
     type: String,
     enum: ['driver', 'passanger'],
