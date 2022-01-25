@@ -1,4 +1,5 @@
 const {StatusCodes} = require('http-status-codes');
+const randomstring = require('randomstring');
 
 const {uploadImage} = require('../common/s3');
 const Users = require('../models/users');
@@ -6,7 +7,6 @@ const authUtils = require('../utils/auth');
 const {responseMessages} = require('../utils/response-messages');
 const {S3_FOLDERS} = require('../utils/s3-folders');
 
-// @ToDo - send confirmation email. set confirmedAccount to true.
 exports.create = async (req, res) => {
   try {
     const {imageType, password} = req.body;
@@ -27,17 +27,23 @@ exports.create = async (req, res) => {
       imageType: undefined,
     });
 
-    const token = authUtils.generateToken(user._id);
-    user.token = token;
-
+    const code = randomstring.generate({
+      length: 6,
+      charset: 'numeric',
+    });
+    user.code = code;
     await user.save();
+
+    await authUtils.sendConfirmationEmail({
+      email: user.email,
+      code,
+    });
 
     return res
       .status(StatusCodes.OK)
       .json({
         success: true,
         putUrl: putURL,
-        token,
       });
   } catch (error) {
     return res
@@ -145,6 +151,52 @@ exports.delete = async (req, res) => {
   try {
     const {id: _id} = req.params;
     await Users.delete({_id});
+
+    return res
+      .status(StatusCodes.OK)
+      .json({
+        success: true,
+      });
+  } catch (err) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({
+        success: false,
+        message: responseMessages.INTERNAL_ERROR,
+        error: err.toString(),
+      });
+  }
+};
+
+exports.confirmAccount = async (req, res) => {
+  try {
+    const {email, code} = req.body;
+
+    const user = await Users
+      .findOne({email})
+      .lean();
+
+    if (!user) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({
+          success: false,
+          message: 'Nenhuma conta encontrada com esse e-mail.',
+        });
+    }
+
+    if (code != user.code) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({
+          success: false,
+          message: 'O código informado é inválido.',
+        });
+    }
+
+    await Users
+      .findByIdAndUpdate(user._id, {confirmedAccount: true})
+      .lean();
 
     return res
       .status(StatusCodes.OK)
