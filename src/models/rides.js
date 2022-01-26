@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 const mongooseDelete = require('mongoose-delete');
 
 const RidesSchema = new mongoose.Schema({
-  startLocation: [{
+  startLocation: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Districts',
-  }],
-  endLocation: [{
+  },
+  endLocation: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Districts',
-  }],
+  },
   pickupPoints: [{
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Pickup_Points',
