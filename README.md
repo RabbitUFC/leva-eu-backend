@@ -82,7 +82,7 @@
     <tr>
       <td class="tg-0pky"><span style="font-weight:bold">RF0003 - </span><span style="font-weight:normal">Recuperar senha</span></td>
       <td class="tg-0pky" style="text-align: center;">O usuário receberá um email com um link de alteração de senha</td>
-      <td class="tg-c3ow" style="text-align: center;">-</td>
+      <td class="tg-c3ow" style="text-align: center;"><a target="_blank" href="https://github.com/RabbitUFC/leva-eu-backend/blob/develop/src/controllers/auth.js#L75" target="_blank" rel="noopener noreferrer">código</a></td>
     </tr>
     <tr>
       <td class="tg-0lax"><span style="font-weight:bold">RF0004 -</span> Ver caronas disponíveis</td>
@@ -102,7 +102,7 @@
     <tr>
       <td class="tg-0lax"><span style="font-weight:bold">RF0007 -</span> Cadastrar carona</td>
       <td class="tg-0lax" style="text-align: center;">O usuário motorista pode cadastrar caronas avulsas à uma rotina</td>
-      <td class="tg-0lax" style="text-align: center;">-</td>
+      <td class="tg-0lax" style="text-align: center;"><a target="_blank" href="https://github.com/RabbitUFC/leva-eu-backend/blob/develop/src/controllers/users.js#L10" target="_blank" rel="noopener noreferrer">código</a></td>
     </tr>
     <tr>
       <td class="tg-0lax"><span style="font-weight:bold">RF0008 -</span> Criar rotina de caronas</td>
