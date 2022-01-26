@@ -27,25 +27,15 @@ exports.list = async (req, res) => {
   try {
     const {active, startLocation, endLocation} = req.query;
 
-    if (active === null && startLocation === null) {
-      const data = await Rides.find({endLocation}, '-__v -createdAt -updatedAt -deleted').lean();
-      return res.status(StatusCodes.OK).json({
-        success: true,
-        data,
-      });
-    } if (active === null && endLocation === null) {
-      const data = await Rides.find({startLocation}, '-__v -createdAt -updatedAt -deleted').lean();
-      return res.status(StatusCodes.OK).json({
-        success: true,
-        data,
-      });
-    } else {
-      const data = await Rides.find({active}, '-__v -createdAt -updatedAt -deleted').lean();
-      return res.status(StatusCodes.OK).json({
-        success: true,
-        data,
-      });
-    }
+    const query = {
+      active,
+      ...(startLocation && {startLocation}),
+      ...(endLocation && {endLocation}),
+    };
+
+    const data = await Rides.find(query, '-__v -createdAt -updatedAt -deleted').lean();
+
+    return res.status(StatusCodes.OK).json({success: true, data});
   } catch (err) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)

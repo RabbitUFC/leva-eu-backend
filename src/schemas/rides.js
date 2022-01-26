@@ -13,6 +13,6 @@ exports.RidesSchema = Joi.object({
 
 exports.RidesQuerySchema = Joi.object({
   active: Joi.boolean().default(true).optional(),
-  startLocation: Joi.string().default(null).optional(),
-  endLocation: Joi.string().default(null).optional(),
+  startLocation: Joi.string().optional(),
+  endLocation: Joi.string().optional(),
 });
