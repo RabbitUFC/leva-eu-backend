@@ -8,7 +8,7 @@ const {jwtSecret} = require('../config');
 
 const ONE_DAY_IN_SECONDS = 86400;
 
-exports.generateToken = (userID) => {
+exports.generateToken = (userID) => { //Todo - password
   const token = jwt.sign({userID}, jwtSecret, {
     expiresIn: ONE_DAY_IN_SECONDS * 7,
   });

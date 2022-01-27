@@ -9,8 +9,21 @@ const {S3_FOLDERS} = require('../utils/s3-folders');
 
 exports.create = async (req, res) => {
   try {
-    const {imageType, password} = req.body;
+    const {imageType, email, password} = req.body;
     var photo, putURL;
+
+    var _user = await Users
+      .findOne({email})
+      .lean();
+
+    if (_user) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({
+          success: false,
+          message: 'Já existe um usuário com esse email.',
+        });
+    }
 
     if (imageType) {
       const {getUrl, putUrl} = uploadImage(S3_FOLDERS.users, imageType);
@@ -151,52 +164,6 @@ exports.delete = async (req, res) => {
   try {
     const {id: _id} = req.params;
     await Users.delete({_id});
-
-    return res
-      .status(StatusCodes.OK)
-      .json({
-        success: true,
-      });
-  } catch (err) {
-    return res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({
-        success: false,
-        message: responseMessages.INTERNAL_ERROR,
-        error: err.toString(),
-      });
-  }
-};
-
-exports.confirmAccount = async (req, res) => {
-  try {
-    const {email, code} = req.body;
-
-    const user = await Users
-      .findOne({email})
-      .lean();
-
-    if (!user) {
-      return res
-        .status(StatusCodes.BAD_REQUEST)
-        .json({
-          success: false,
-          message: 'Nenhuma conta encontrada com esse e-mail.',
-        });
-    }
-
-    if (code != user.code) {
-      return res
-        .status(StatusCodes.BAD_REQUEST)
-        .json({
-          success: false,
-          message: 'O código informado é inválido.',
-        });
-    }
-
-    await Users
-      .findByIdAndUpdate(user._id, {confirmedAccount: true})
-      .lean();
 
     return res
       .status(StatusCodes.OK)

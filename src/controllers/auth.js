@@ -174,3 +174,52 @@ exports.resetPassword = async (req, res) => {
       });
   }
 };
+
+exports.confirmAccount = async (req, res) => {
+  try {
+    const {email, code} = req.body;
+
+    const user = await Users
+      .findOne({email})
+      .lean();
+
+    if (!user) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({
+          success: false,
+          message: 'Nenhuma conta encontrada com esse e-mail.',
+        });
+    }
+
+    if (code != user.code) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({
+          success: false,
+          message: 'O código informado é inválido.',
+        });
+    }
+
+    const token = authUtils.generateToken(user._id);
+
+    await Users
+      .findByIdAndUpdate(user._id, {confirmedAccount: true, token})
+      .lean();
+
+    return res
+      .status(StatusCodes.OK)
+      .json({
+        success: true,
+        token,
+      });
+  } catch (err) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({
+        success: false,
+        message: responseMessages.INTERNAL_ERROR,
+        error: err.toString(),
+      });
+  }
+};
