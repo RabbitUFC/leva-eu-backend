@@ -9,6 +9,7 @@ exports.RidesSchema = Joi.object({
   spots: Joi.number().valid(1, 2, 3, 4, 5, 6).required(),
   additionalInformation: Joi.string().required(),
   active: Joi.boolean().required(),
+
 });
 
 exports.RidesQuerySchema = Joi.object({

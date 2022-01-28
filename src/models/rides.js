@@ -22,7 +22,7 @@ const RidesSchema = new mongoose.Schema({
   spots: Number,
   additionalInformation: String,
   active: Boolean,
-}, {timestamps: true});
+}, { timestamps: true });
 
 RidesSchema.plugin(mongooseDelete, {
   deletedAt: true,

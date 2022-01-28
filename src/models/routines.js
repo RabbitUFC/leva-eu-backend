@@ -11,6 +11,14 @@ const RoutinesSchema = new mongoose.Schema({
       type: mongoose.SchemaTypes.ObjectId,
       ref: 'Pickup_Points',
     }],
+    driver: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'Users',
+    },
+    passengers: [{
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'Users',
+    }],
     hour: Date,
   },
   returnData: {
@@ -30,7 +38,7 @@ const RoutinesSchema = new mongoose.Schema({
     enum: [1, 2, 3, 4, 5, 6, 7],
   }],
   duration: Number,
-}, {timestamps: true});
+}, { timestamps: true });
 
 RoutinesSchema.plugin(mongooseDelete, {
   deletedAt: true,

@@ -14,4 +14,6 @@ exports.RoutinesSchema = Joi.object({
   additionalInformation: Joi.string().required(),
   days: Joi.array().items(Joi.number().valid(1, 2, 3, 4, 5, 6, 7)).required(),
   duration: Joi.number(),
+  driver: Joi.string().required(),
+  passengers: Joi.array().items(Joi.string()).max(6).required(),
 });
