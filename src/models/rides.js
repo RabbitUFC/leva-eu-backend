@@ -17,11 +17,20 @@ const RidesSchema = new mongoose.Schema({
   date: [{
     type: Number,
     enum: [1, 2, 3, 4, 5, 6, 7],
-  }],
+  }], // better as calendar form type?
   hour: Date,
-  spots: Number,
+  passengersAmount: Number,
   additionalInformation: String,
   active: Boolean,
+  driver: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'Users',
+  },
+  passengers: [{
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'Users',
+  }],
+  ratingRide: Number
 }, { timestamps: true });
 
 RidesSchema.plugin(mongooseDelete, {
