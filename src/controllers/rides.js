@@ -1,11 +1,11 @@
 const {StatusCodes} = require('http-status-codes');
 
-const Routines = require('../models/routines');
+const Rides = require('../models/rides');
 const {responseMessages} = require('../utils/response-messages');
 
 exports.create = async (req, res) => {
   try {
-    await Routines.create(req.body);
+    await Rides.create(req.body);
 
     return res
       .status(StatusCodes.OK)
@@ -25,26 +25,39 @@ exports.create = async (req, res) => {
 
 exports.list = async (req, res) => {
   try {
-    const data = await Routines
-      .find({}, '-__v -createdAt -updatedAt -deleted')
+    const {active, startLocation, endLocation, pickupPoints} = req.query;
+
+    const query = {
+      active,
+      ...(startLocation && {startLocation}),
+      ...(endLocation && {endLocation}),
+      ...(pickupPoints && {
+        pickupPoints: {
+          $in: pickupPoints.replace(/ /g, '').split(','),
+        },
+      }),
+    };
+
+    const data = await Rides
+      .find(query, '-__v -createdAt -updatedAt -deleted')
       .populate({
-        path: 'district pickup-points',
+        path: 'startLocation endLocation',
+        select: '_id name',
+        options: {withDeleted: true},
+      })
+      .populate({
+        path: 'pickupPoints',
         select: '_id name image',
         options: {withDeleted: true},
       })
       .populate({
-        path: 'users',
+        path: 'driver',
         select: '_id name photo rating',
         options: {withDeleted: true},
       })
       .lean();
 
-    return res
-      .status(StatusCodes.OK)
-      .json({
-        success: true,
-        data,
-      });
+    return res.status(StatusCodes.OK).json({success: true, data});
   } catch (err) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
@@ -60,15 +73,20 @@ exports.retrieve = async (req, res) => {
   try {
     const {id} = req.params;
 
-    const data = await Routines
+    const data = await Rides
       .findById(id)
       .populate({
-        path: 'district pickup-points',
+        path: 'startLocation endLocation',
+        select: '_id name',
+        options: {withDeleted: true},
+      })
+      .populate({
+        path: 'pickupPoints',
         select: '_id name image',
         options: {withDeleted: true},
       })
       .populate({
-        path: 'users',
+        path: 'driver',
         select: '_id name photo rating',
         options: {withDeleted: true},
       })
@@ -101,7 +119,7 @@ exports.update = async (req, res) => {
   try {
     const {id} = req.params;
 
-    await Routines
+    await Rides
       .findByIdAndUpdate(id, req.body)
       .lean();
 
@@ -124,7 +142,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     const {id: _id} = req.params;
-    await Routines.delete({_id});
+    await Rides.delete({_id});
 
     return res
       .status(StatusCodes.OK)

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const mongooseDelete = require('mongoose-delete');
 
-const RoutinesSchema = new mongoose.Schema({
+const RidesSchema = new mongoose.Schema({
   startLocation: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Districts',
@@ -22,19 +22,16 @@ const RoutinesSchema = new mongoose.Schema({
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Users',
   },
-  days: [{
-    type: Number,
-    enum: [1, 2, 3, 4, 5, 6, 7],
+  passengers: [{
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'Users',
   }],
-  duration: [{
-    type: Number,
-    enum: [1, 4, 16],
-  }],
+  rating: Number,
 }, {timestamps: true});
 
-RoutinesSchema.plugin(mongooseDelete, {
+RidesSchema.plugin(mongooseDelete, {
   deletedAt: true,
   overrideMethods: true,
 });
 
-module.exports = mongoose.model('Routines', RoutinesSchema);
+module.exports = mongoose.model('Rides', RidesSchema);

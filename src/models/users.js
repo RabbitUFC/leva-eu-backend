@@ -27,6 +27,7 @@ const UsersSchema = new mongoose.Schema({
     enum: ['male', 'female', 'other'],
     default: 'other',
   },
+  rating: Number,
 }, {timestamps: true});
 
 UsersSchema.plugin(mongooseDelete, {
