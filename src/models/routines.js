@@ -14,11 +14,7 @@ const RoutinesSchema = new mongoose.Schema({
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Pickup_Points',
   }],
-  /* date: [{
-    type: Number,
-    enum: [1, 2, 3, 4, 5, 6, 7],
-  }], */
-  hour: Date,
+  date: Date,
   passengersAmount: Number,
   additionalInformation: String,
   active: Boolean,
@@ -30,8 +26,11 @@ const RoutinesSchema = new mongoose.Schema({
     type: Number,
     enum: [1, 2, 3, 4, 5, 6, 7],
   }],
-  duration: Number
-}, { timestamps: true });
+  duration: [{
+    type: Number,
+    enum: [1, 4, 16],
+  }],
+}, {timestamps: true});
 
 RoutinesSchema.plugin(mongooseDelete, {
   deletedAt: true,
@@ -39,40 +38,3 @@ RoutinesSchema.plugin(mongooseDelete, {
 });
 
 module.exports = mongoose.model('Routines', RoutinesSchema);
-
-/* goingData: {
-  district: {
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: 'Districts',
-  },
-  pickupPoints: [{
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: 'Pickup_Points',
-  }],
-  driver: {
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: 'Users',
-  },
-  passengers: [{
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: 'Users',
-  }],
-  hour: Date,
-},
-returnData: {
-  district: {
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: 'Districts',
-  },
-  pickupPoints: [{
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: 'Pickup_Points',
-  }],
-  hour: Date,
-},
-additionalInformation: String,
-days: [{
-  type: Number,
-  enum: [1, 2, 3, 4, 5, 6, 7],
-}],
-duration: Number, */

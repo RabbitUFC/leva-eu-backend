@@ -28,12 +28,14 @@ exports.list = async (req, res) => {
     const data = await Routines
       .find({}, '-__v -createdAt -updatedAt -deleted')
       .populate({
-        path: 'goingData returnData',
-        populate: {
-          path: 'district pickupPoints',
-          select: '_id name image',
-          options: {withDeleted: true},
-        },
+        path: 'district pickup-points',
+        select: '_id name image',
+        options: {withDeleted: true},
+      })
+      .populate({
+        path: 'users',
+        select: '_id name photo rating',
+        options: {withDeleted: true},
       })
       .lean();
 
@@ -61,12 +63,14 @@ exports.retrieve = async (req, res) => {
     const data = await Routines
       .findById(id)
       .populate({
-        path: 'goingData returnData',
-        populate: {
-          path: 'district pickupPoints',
-          select: '_id name image',
-          options: {withDeleted: true},
-        },
+        path: 'district pickup-points',
+        select: '_id name image',
+        options: {withDeleted: true},
+      })
+      .populate({
+        path: 'users',
+        select: '_id name photo rating',
+        options: {withDeleted: true},
       })
       .lean();
 

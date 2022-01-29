@@ -14,11 +14,7 @@ const RidesSchema = new mongoose.Schema({
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Pickup_Points',
   }],
-  date: [{
-    type: Number,
-    enum: [1, 2, 3, 4, 5, 6, 7],
-  }], // better as calendar form type?
-  hour: Date,
+  date: Date,
   passengersAmount: Number,
   additionalInformation: String,
   active: Boolean,
@@ -30,8 +26,8 @@ const RidesSchema = new mongoose.Schema({
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Users',
   }],
-  ratingRide: Number
-}, { timestamps: true });
+  rating: Number,
+}, {timestamps: true});
 
 RidesSchema.plugin(mongooseDelete, {
   deletedAt: true,

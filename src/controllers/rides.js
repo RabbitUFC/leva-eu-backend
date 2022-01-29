@@ -33,7 +33,19 @@ exports.list = async (req, res) => {
       ...(endLocation && {endLocation}),
     };
 
-    const data = await Rides.find(query, '-__v -createdAt -updatedAt -deleted').lean();
+    const data = await Rides
+      .find(query, '-__v -createdAt -updatedAt -deleted')
+      .populate({
+        path: 'district pickup-points',
+        select: '_id name image',
+        options: {withDeleted: true},
+      })
+      .populate({
+        path: 'users',
+        select: '_id name photo rating',
+        options: {withDeleted: true},
+      })
+      .lean();
 
     return res.status(StatusCodes.OK).json({success: true, data});
   } catch (err) {
@@ -53,6 +65,16 @@ exports.retrieve = async (req, res) => {
 
     const data = await Rides
       .findById(id)
+      .populate({
+        path: 'district pickup-points',
+        select: '_id name image',
+        options: {withDeleted: true},
+      })
+      .populate({
+        path: 'users',
+        select: '_id name photo rating',
+        options: {withDeleted: true},
+      })
       .lean();
 
     if (!data) {
