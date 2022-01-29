@@ -11,7 +11,7 @@ exports.UsersCreateSchema = Joi.object({
   userTypePreference: Joi.string().required().valid('driver', 'passanger').default('passanger'),
   gender: Joi.string().required().valid('male', 'female', 'other').default('other'),
   token: Joi.forbidden(),
-  rating: Joi.number().optional(),
+  rating: Joi.number().forbidden(),
 });
 
 exports.UsersUpdateSchema = Joi.object({

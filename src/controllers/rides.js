@@ -25,23 +25,33 @@ exports.create = async (req, res) => {
 
 exports.list = async (req, res) => {
   try {
-    const {active, startLocation, endLocation} = req.query;
+    const {active, startLocation, endLocation, pickupPoints} = req.query;
 
     const query = {
       active,
       ...(startLocation && {startLocation}),
       ...(endLocation && {endLocation}),
+      ...(pickupPoints && {
+        pickupPoints: {
+          $in: pickupPoints.replace(/ /g, '').split(','),
+        },
+      }),
     };
 
     const data = await Rides
       .find(query, '-__v -createdAt -updatedAt -deleted')
       .populate({
-        path: 'district pickup-points',
+        path: 'startLocation endLocation',
+        select: '_id name',
+        options: {withDeleted: true},
+      })
+      .populate({
+        path: 'pickupPoints',
         select: '_id name image',
         options: {withDeleted: true},
       })
       .populate({
-        path: 'users',
+        path: 'driver',
         select: '_id name photo rating',
         options: {withDeleted: true},
       })
@@ -66,12 +76,17 @@ exports.retrieve = async (req, res) => {
     const data = await Rides
       .findById(id)
       .populate({
-        path: 'district pickup-points',
+        path: 'startLocation endLocation',
+        select: '_id name',
+        options: {withDeleted: true},
+      })
+      .populate({
+        path: 'pickupPoints',
         select: '_id name image',
         options: {withDeleted: true},
       })
       .populate({
-        path: 'users',
+        path: 'driver',
         select: '_id name photo rating',
         options: {withDeleted: true},
       })
