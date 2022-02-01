@@ -16,6 +16,8 @@ exports.RidesQuerySchema = Joi.object({
   startLocation: Joi.string().optional(),
   endLocation: Joi.string().optional(),
   pickupPoints: Joi.string().optional(),
+  startLocationByName: Joi.string().optional(),
+  endLocationByName: Joi.string().optional(),
 });
 
 exports.RidesUpdateSchema = Joi.object({

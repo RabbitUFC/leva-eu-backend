@@ -25,7 +25,14 @@ exports.create = async (req, res) => {
 
 exports.list = async (req, res) => {
   try {
-    const {active, startLocation, endLocation, pickupPoints} = req.query;
+    const {
+      active,
+      startLocation,
+      endLocation,
+      pickupPoints,
+      startLocationByName,
+      endLocationByName,
+    } = req.query;
 
     const query = {
       active,
@@ -38,7 +45,7 @@ exports.list = async (req, res) => {
       }),
     };
 
-    const data = await Rides
+    var data = await Rides
       .find(query, '-__v -createdAt -updatedAt -deleted')
       .populate({
         path: 'startLocation endLocation',
@@ -56,6 +63,20 @@ exports.list = async (req, res) => {
         options: {withDeleted: true},
       })
       .lean();
+
+    if (startLocationByName) {
+      data = data.filter((item) => {
+        const locationName = item.startLocation.name.toString().toLowerCase();
+        const search = startLocationByName.toString().toLowerCase();
+        return locationName.includes(search);
+      });
+    } else if (endLocationByName) {
+      data = data.filter((item) => {
+        const locationName = item.endLocation.name.toString().toLowerCase();
+        const search = endLocationByName.toString().toLowerCase();
+        return locationName.includes(search);
+      });
+    }
 
     return res.status(StatusCodes.OK).json({success: true, data});
   } catch (err) {
