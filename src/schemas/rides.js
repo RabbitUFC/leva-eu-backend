@@ -6,7 +6,7 @@ exports.RidesSchema = Joi.object({
   pickupPoints: Joi.array().items(Joi.string()).min(1).required(),
   date: Joi.string().required(),
   passengersAmount: Joi.number().valid(1, 2, 3, 4, 5, 6).required(),
-  additionalInformation: Joi.string().optional(),
+  additionalInformation: Joi.string().allow('').optional(),
   active: Joi.boolean().required(),
   driver: Joi.string().required(),
 });
@@ -27,7 +27,7 @@ exports.RidesUpdateSchema = Joi.object({
   pickupPoints: Joi.array().items(Joi.string()).min(1).optional(),
   date: Joi.string().optional(),
   passengersAmount: Joi.number().valid(1, 2, 3, 4, 5, 6).optional(),
-  additionalInformation: Joi.string().optional(),
+  additionalInformation: Joi.string().allow('').optional(),
   active: Joi.boolean().optional(),
   driver: Joi.string().forbidden(),
   rating: Joi.number().forbidden(),
