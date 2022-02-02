@@ -32,12 +32,14 @@ exports.list = async (req, res) => {
       pickupPoints,
       startLocationByName,
       endLocationByName,
+      driver,
     } = req.query;
 
     const query = {
       active,
       ...(startLocation && {startLocation}),
       ...(endLocation && {endLocation}),
+      ...(driver && {driver}),
       ...(pickupPoints && {
         pickupPoints: {
           $in: pickupPoints.replace(/ /g, '').split(','),
