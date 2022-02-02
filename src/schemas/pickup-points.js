@@ -13,3 +13,7 @@ exports.PickupPointUpdateSchema = Joi.object({
   district: Joi.string().optional(),
   imageType: Joi.string().optional().valid(...ImageMimes),
 });
+
+exports.PickupPointQuerySchema = Joi.object({
+  search: Joi.string().optional(),
+});

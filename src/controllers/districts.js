@@ -25,8 +25,15 @@ exports.create = async (req, res) => {
 
 exports.list = async (req, res) => {
   try {
+    const {search} = req.query;
+    var query = {};
+
+    if (search) {
+      query = {name: new RegExp(search, 'i')};
+    }
+
     const data = await Districts
-      .find({}, '-__v -createdAt -updatedAt -deleted')
+      .find(query, '-__v -createdAt -updatedAt -deleted')
       .lean();
 
     return res
