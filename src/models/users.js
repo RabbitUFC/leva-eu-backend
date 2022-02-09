@@ -19,8 +19,8 @@ const UsersSchema = new mongoose.Schema({
   },
   userTypePreference: {
     type: String,
-    enum: ['driver', 'passanger'],
-    default: 'passanger',
+    enum: ['driver', 'passenger'],
+    default: 'passenger',
   },
   gender: {
     type: String,
