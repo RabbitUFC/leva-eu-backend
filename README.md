@@ -8,34 +8,42 @@
     <td align="center">
       <a target="_blank" href="https://www.linkedin.com/in/arthur-anderson-2328ab201/">
         <img src="https://raw.githubusercontent.com/RabbitUFC/leva-eu-backend/develop/assets/members/arthur.jpg"
-          style="object-fit: cover; min-width: 75px; min-height: 75px" /><br/>
+          style="object-fit: cover; border-radius: 50%; width: 120px; height: 120px" /><br/>
         <sub><b>Arthur Anderson [494828]</b></sub>
       </a><br/>
-     </td>
-     <td align="center">
+    </td>
+    <td align="center">
       <a target="_blank" href="https://www.linkedin.com/in/cainan-matheus-coelho-464988209/">
-        <img src="https://raw.githubusercontent.com/RabbitUFC/leva-eu-backend/develop/assets/members/cainan.jpg" style="object-fit: cover; min-width: 75px; min-height: 75px" /><br/>
+        <img src="https://raw.githubusercontent.com/RabbitUFC/leva-eu-backend/develop/assets/members/cainan.jpg" style="object-fit: cover; border-radius: 50%; width: 120px; height: 120px" /><br/>
         <sub><b>Cainan Matheus [494795]</b></sub>
       </a><br/>
-     </td>
-     <td align="center">
+    </td>
+    <td align="center">
       <a target="_blank" href="https://www.linkedin.com/in/eric-ian-noronha-junqueira-bb40091a7/">
-        <img src="https://raw.githubusercontent.com/RabbitUFC/leva-eu-backend/develop/assets/members/eric.jpg" style="object-fit: cover; min-width: 75px; min-height: 75px" /><br/>
+        <img src="https://raw.githubusercontent.com/RabbitUFC/leva-eu-backend/develop/assets/members/eric.jpg" style="object-fit: cover; border-radius: 50%; width: 120px; height: 120px" /><br/>
         <sub><b>Eric Ian Noronha [493698]</b></sub>
       </a><br/>
      </td>
-     <td align="center">
+  </tr>
+  <tr>
+    <td align="center">
       <a target="_blank" href="https://www.linkedin.com/in/joaovictorfreitas/">
-        <img src="https://raw.githubusercontent.com/RabbitUFC/leva-eu-backend/develop/assets/members/joao.jpg" style="object-fit: cover; min-width: 75px; min-height: 75px" /><br/>
+        <img src="https://raw.githubusercontent.com/RabbitUFC/leva-eu-backend/develop/assets/members/joao.jpg" style="object-fit: cover; border-radius: 50%; width: 120px; height: 120px" /><br/>
         <sub><b>João V. Freitas [493832]</b></sub>
       </a><br/>
-     </td>
-     <td align="center">
+    </td>
+    <td align="center">
       <a target="_blank" href="https://www.linkedin.com/in/jordy-muniz-b34072117/">
-        <img src="https://raw.githubusercontent.com/RabbitUFC/leva-eu-backend/develop/assets/members/jordy.jpg" style="object-fit: cover; min-width: 75px; min-height: 75px" /><br/>
+        <img src="https://raw.githubusercontent.com/RabbitUFC/leva-eu-backend/develop/assets/members/jordy.jpg" style="object-fit: cover; border-radius: 50%; width: 120px; height: 120px" /><br/>
         <sub><b>Jordy Muniz Araújo [500872]</b></sub>
       </a><br/>
-     </td>
+    </td>
+    <td align="center">
+      <a target="_blank" href="https://www.linkedin.com/in/joaovictorfreitas/">
+        <img src="https://raw.githubusercontent.com/RabbitUFC/leva-eu-backend/develop/assets/members/larissa.jpg" style="object-fit: cover; border-radius: 50%; width: 120px; height: 120px" /><br/>
+        <sub><b>Larissa Magalhães [493802]</b></sub>
+      </a><br/>
+    </td>
   </tr>
 </table>
 
@@ -112,7 +120,7 @@
     <tr>
       <td class="tg-0lax"><span style="font-weight:bold">RF0009 -</span> Solicitar vaga em carona</td>
       <td class="tg-0lax" style="text-align: center;">O usuário passageiro pode solicitar para participar numa carona</td>
-      <td class="tg-0lax" style="text-align: center;">-</td>
+      <td class="tg-0lax" style="text-align: center;"><a target="_blank" href="https://github.com/RabbitUFC/leva-eu-backend/blob/develop/src/controllers/rides-requests.js#L8" target="_blank" rel="noopener noreferrer">código</a></td>
     </tr>
     <tr>
       <td class="tg-0lax"><span style="font-weight:bold">RF00010 -</span> Contatar usuário</td>
