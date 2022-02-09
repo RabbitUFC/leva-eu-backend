@@ -50,7 +50,7 @@
 ## Links
 [Postman - API](https://www.postman.com/winter-resonance-1974/workspace/levaeu/request/6751126-d541ad76-5f19-4d4d-bfab-83355e33795d)<br>
 [Trello](https://trello.com/b/RcivNDqd/levaeu)<br>
-[API url base](https://s7mjf3rnvf.execute-api.us-east-1.amazonaws.com/dev)
+[API url base](https://s7mjf3rnvf.execute-api.us-east-1.amazonaws.com/dev)<br>
 [Video do projeto](https://www.youtube.com/watch?v=Crx06MaqaNo&ab_channel=CainanMatheus)
 
 ## Mapa de funcionalidades
