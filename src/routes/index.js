@@ -5,6 +5,7 @@ const auth = require('./modules/auth');
 const districts = require('./modules/districts');
 const pickupPoints = require('./modules/pickup-points');
 const rides = require('./modules/rides');
+const ridesRequests = require('./modules/rides-requests');
 const routines = require('./modules/routines');
 const users = require('./modules/users');
 
@@ -14,5 +15,6 @@ router.use('/pickup-points', pickupPoints);
 router.use('/districts', districts);
 router.use('/routines', routines);
 router.use('/rides', rides);
+router.use('/rides-requests', ridesRequests);
 
 module.exports = router;
